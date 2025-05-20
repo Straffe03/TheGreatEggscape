@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 720f;
     public Transform cameraTransform; // Assignar la càmera manualment
 
+    //Cosas para no flotar
+    private Vector3 verticalVelocity;
+    public float gravity = -9.81f;
+
     private CharacterController controller;
     private Animator animator;
 
@@ -60,7 +64,18 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(moveDir);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
+        // Aplica gravetat
+        if (controller.isGrounded)
+        {
+            verticalVelocity.y = -2f; // per mantenir ancorat a terra
+        }
+        else
+        {
+            verticalVelocity.y += gravity * Time.deltaTime;
+        }
+
+        Vector3 totalMove = moveDir * currentSpeed + verticalVelocity;
         // Moviment aplicat
-        controller.Move(moveDir * currentSpeed * Time.deltaTime);
+        controller.Move(totalMove * Time.deltaTime);
     }
 }
