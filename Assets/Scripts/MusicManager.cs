@@ -4,20 +4,38 @@ using UnityEngine;
  * Script que reprodueix música persistent entre escenes.
  * Assegura que només hi ha una instància i no es destrueix entre canvis d’escena.
  */
+
 public class MusicManager : MonoBehaviour
 {
-    private static MusicManager instance;
+    public static MusicManager Instance;
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        // Evita duplicats
-        if (instance != null)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            audioSource = GetComponent<AudioSource>();
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
+    }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+    public void SetMute(bool mute)
+    {
+        audioSource.mute = mute;
+    }
+
+    public bool IsMuted()
+    {
+        return audioSource.mute;
+    }
+
+    public AudioSource GetAudioSource()
+    {
+        return audioSource;
     }
 }

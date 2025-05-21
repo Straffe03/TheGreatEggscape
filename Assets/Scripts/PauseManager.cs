@@ -67,6 +67,14 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+
+    public void LoadOptionsMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
+
     public void QuitGame()
     {
         Debug.Log("Sortint del joc...");
