@@ -14,6 +14,12 @@ public class SimplePlayerCamera : MonoBehaviour
     private float rotX = 20f;
     private float rotY = 0f;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // Bloqueja el cursor al centre
+        Cursor.visible = false; // Amaga el cursor
+    }
+
     private void LateUpdate()
     {
         if (player == null) return;
