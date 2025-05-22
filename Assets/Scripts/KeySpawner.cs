@@ -10,9 +10,8 @@ public class KeySpawner : MonoBehaviour
     [Header("Configuració general")]
     public GameObject keyPrefab;
     public GameManager gameManager;
-    public int scorePerKey;
     string dificultad;
-    public int maxKeys;
+    int maxKeys;
     [Header("Àrea de generació")]
     public Vector3 spawnAreaMin;
     public Vector3 spawnAreaMax;

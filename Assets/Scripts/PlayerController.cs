@@ -33,14 +33,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDirection = new Vector3(h, 0f, v).normalized;
 
-        // Si no es mou, aturem animació i sortim
-        if (inputDirection.magnitude < 0.1f)
-        {
-            animator.SetFloat("Vert", 0f);
-            animator.speed = 1f; // Restaurem la velocitat per seguretat
-            return;
-        }
-
         // Vectors relatius a la càmera
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
@@ -56,14 +48,20 @@ public class PlayerController : MonoBehaviour
         bool isSprinting = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
-        // Ajustem l'animació i velocitat segons estat
-        animator.SetFloat("Vert", isSprinting ? 1f : 0.85f);
-        animator.speed = isSprinting ? 2f : 2f; // Fa que caminar sigui més viu
+        if (inputDirection.magnitude >= 0.1f)
+        {
+            animator.SetFloat("Vert", isSprinting ? 1f : 0.85f);
+            animator.speed = isSprinting ? 2f : 2f;
 
-        // Rotació del personatge
-        Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
+            // Rotació del personatge
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetFloat("Vert", 0f);
+            animator.speed = 1f;
+        }
         // Aplica gravetat
         if (controller.isGrounded)
         {
