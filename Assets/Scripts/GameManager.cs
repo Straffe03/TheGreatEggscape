@@ -1,20 +1,24 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public int keys = 0;
+    public static int keys = 0;
+    public static int pickUps = 0;
+    public int scorePerPowerUpSpeed = 50;
     public int maxKeys;
     public int maxEnemies;
     public int maxPowerUps;
-    public int score = 0;
+    public static int score = 0;
     public int scorePerKey = 100;
 
     public string difficulty;
 
+    public static bool victory;
 
 
     public TextMeshProUGUI keytxt;
@@ -52,20 +56,20 @@ public class GameManager : MonoBehaviour
         if (difficulty == "Endless")
         {
             maxKeyText = "Infinite";
-            maxKeys = 6;
+            maxKeys = 5;
             maxEnemies = 6;
             maxPowerUps = 2;
         }
         else if (difficulty == "Dificil")
         {
-            maxKeys = 7;
+            maxKeys = 15;
             maxKeyText = maxKeys.ToString();
             maxEnemies = 5;
             maxPowerUps = 3;
         }
         else
         {
-            maxKeys = 5;
+            maxKeys = 10;
             maxKeyText = maxKeys.ToString();
             maxEnemies = 4;
             maxPowerUps = 3;
@@ -76,10 +80,25 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-
+        CheckVictory();
+        CheckLoss();
         keytxt.text = keys.ToString() + "/" + maxKeyText;
         scoretxt.text = "Score: " + score.ToString();
 
+    }
+
+    void CheckVictory()
+    {
+        if (difficulty != "Endless" && maxKeys == keys)
+        {
+            victory = true;
+            SceneManager.LoadScene("MenuFinal");
+        }
+    }
+
+    void CheckLoss()
+    {
+        //TODO check si hp <= 0 if true victory ffalse y acabar
     }
 
 }

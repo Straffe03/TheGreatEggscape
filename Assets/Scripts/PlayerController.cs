@@ -76,4 +76,22 @@ public class PlayerController : MonoBehaviour
         // Moviment aplicat
         controller.Move(totalMove * Time.deltaTime);
     }
+    public void IncreaseSpeed(float speedBoost, float duration)
+    {
+        StartCoroutine(SpeedBoostCoroutine(speedBoost, duration));
+    }
+
+    private System.Collections.IEnumerator SpeedBoostCoroutine(float speedBoost, float duration)
+    {
+        float originalWalkSpeed = walkSpeed;
+        float originalSprintSpeed = sprintSpeed;
+
+        walkSpeed += speedBoost;
+        sprintSpeed += speedBoost;
+
+        yield return new WaitForSeconds(duration);
+
+        walkSpeed = originalWalkSpeed;
+        sprintSpeed = originalSprintSpeed;
+    }
 }
