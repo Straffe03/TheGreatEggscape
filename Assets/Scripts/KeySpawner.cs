@@ -27,6 +27,7 @@ public class KeySpawner : MonoBehaviour
         switch (dificultad)
         {
             case "Normal":
+            Debug.Log("En dificultad normal hacen spawn " + maxKeys + "llaves");
                 SpawnInitialKeys(maxKeys);
                 break;
             case "Dificil":
@@ -66,7 +67,10 @@ public class KeySpawner : MonoBehaviour
             Random.Range(spawnAreaMin.z, spawnAreaMax.z)
         );
 
+        Debug.Log(spawnPosition.x + "x, " + spawnPosition.y+"y, " +spawnPosition.z + "z");
+
         GameObject key = Instantiate(keyPrefab, spawnPosition, Quaternion.identity);
+        key.tag = "Key";
         activeKeys.Add(key);
 
         key.GetComponent<Key>().onCollected += () =>

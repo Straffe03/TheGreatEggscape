@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -13,8 +14,8 @@ public class GameManager : MonoBehaviour
     public int scorePerKey = 100;
 
     public string difficulty;
-    
-    
+
+
 
     public TextMeshProUGUI keytxt;
     public TextMeshProUGUI scoretxt;
@@ -40,21 +41,17 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Debug.Log("Pasa por el start");
         difficulty = PlayerPrefs.GetString("Difficulty");
+        Debug.Log(difficulty);
         if (difficulty == null)
         {
             difficulty = "Normal";
         }
+
         if (difficulty == "Endless")
         {
             maxKeyText = "Infinite";
-        }
-        else
-        {
-            maxKeyText = maxKeys.ToString();
-        }
-        if (difficulty == "Endless")
-        {
             maxKeys = 6;
             maxEnemies = 6;
             maxPowerUps = 2;
@@ -62,15 +59,19 @@ public class GameManager : MonoBehaviour
         else if (difficulty == "Dificil")
         {
             maxKeys = 7;
+            maxKeyText = maxKeys.ToString();
             maxEnemies = 5;
             maxPowerUps = 3;
         }
         else
         {
             maxKeys = 5;
+            maxKeyText = maxKeys.ToString();
             maxEnemies = 4;
             maxPowerUps = 3;
+            Debug.Log(maxKeys);
         }
+
     }
     void Update()
     {
