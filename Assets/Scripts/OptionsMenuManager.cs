@@ -11,7 +11,7 @@ public class OptionsMenuManager : MonoBehaviour
 
     public AudioSource musicSource;
 
-    private string selectedDifficulty = "Normal";
+    private string selectedDifficulty;
 
     public void VolverAlMenu()
     {
@@ -20,6 +20,7 @@ public class OptionsMenuManager : MonoBehaviour
 
     private void Start()
     {
+        selectedDifficulty = PlayerPrefs.GetString("Difficulty");
         // Assignar listeners
         normalButton.onClick.AddListener(() => SelectDifficulty("Normal"));
         dificilButton.onClick.AddListener(() => SelectDifficulty("Dificil"));
@@ -37,6 +38,7 @@ public class OptionsMenuManager : MonoBehaviour
         selectedDifficulty = difficulty;
         //Para recuperar la dificultad en otras escenas sera string dificultad = PlayerPrefs.GetString("Difficulty", "Normal");
         PlayerPrefs.SetString("Difficulty", difficulty);
+        PlayerPrefs.Save();
         UpdateButtonColors();
     }
 

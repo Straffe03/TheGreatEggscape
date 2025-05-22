@@ -1,18 +1,18 @@
+using System;
 using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public int scorePerKey = 100;
-    public GameManager gameManager;
-    public GameObject key;
+    public Action onCollected;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.keys++;
-            gameManager.score += scorePerKey;
-            
-            Destroy(key);
+            GameManager.Instance.KeyCollected();
+            onCollected?.Invoke();
+            Destroy(gameObject);
+
+            //Destroy(gameObject);
         }
     }
 }
