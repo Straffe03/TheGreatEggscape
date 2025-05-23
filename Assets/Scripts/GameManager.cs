@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI keytxt;
     public TextMeshProUGUI scoretxt;
+    public Slider healthSlider;
+
     string maxKeyText;
 
 
@@ -88,6 +91,17 @@ public class GameManager : MonoBehaviour
             scoretxt.text = "Score: " + score.ToString();
         }
 
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+    }
+
+    public void SetHealth(int currentHealth)
+    {
+        healthSlider.value = currentHealth;
     }
 
     void CheckVictory()

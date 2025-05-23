@@ -9,6 +9,10 @@ public class MainMenuManager : MonoBehaviour
         {
             PlayerPrefs.SetString("Difficulty", "Normal");
         }
+        if(GameManager.Instance != null)
+        {
+           Destroy(GameManager.Instance.gameObject); // Evitar duplicats del GameManager
+        }
     }
     public void PlayGame()
     {

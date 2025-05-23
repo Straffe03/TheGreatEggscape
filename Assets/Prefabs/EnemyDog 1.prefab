@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionRange: 10
-  stopChasingDistance: 15
+  stopChasingDistance: 20
   patrolRadius: 100
   patrolWaitTime: 3
   barkSound: {fileID: 8300000, guid: 2f30283212330d44db6638d4950554c8, type: 3}

@@ -13,8 +13,11 @@ public class PlayerManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public GameObject bloodEffectPrefab;
+
     private void Start()
     {
+        GameManager.Instance.SetMaxHealth(maxHealth);
         currentHealth = maxHealth;
         audioSource = GetComponent<AudioSource>();
     }
@@ -22,8 +25,21 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        GameManager.Instance.SetHealth(currentHealth);
         Debug.Log("Has rebut " + amount + " de dany. Vida restant: " + currentHealth);
 
+        if (bloodEffectPrefab != null)
+        {
+            GameObject blood = Instantiate(bloodEffectPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+
+            ParticleSystem ps = blood.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+            }
+
+            Destroy(blood, 1.5f);
+        }
         if (currentHealth <= 0)
         {
             Die();
