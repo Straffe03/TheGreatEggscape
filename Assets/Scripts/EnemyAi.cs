@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
 
     private NavMeshAgent agent;
-    private Vector3 initialPosition;
+    private Vector3 initialPosition = Vector3.zero;
     private float patrolTimer;
 
     // Animació de caminar/idle

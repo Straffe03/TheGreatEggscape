@@ -31,8 +31,7 @@ public class Key : MonoBehaviour
             GameManager.Instance.KeyCollected();
             onCollected?.Invoke();
             Destroy(gameObject);
-
-            //Destroy(gameObject);
+            
         }
     }
 }

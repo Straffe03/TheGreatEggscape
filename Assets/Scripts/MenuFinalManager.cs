@@ -34,10 +34,12 @@ public class MenuFinalManager : MonoBehaviour
     public void BackToMenu()
     {
         Debug.Log("Tornant al menú principal...");
+        // GameManager.score = 0;
+        // GameManager.keys = 0;
+        // GameManager.pickUps = 0;
+        GameManager.Instance.ResetGameManager();
         SceneManager.LoadScene("MainMenu");
-        GameManager.score = 0;
-        GameManager.keys = 0;
-        GameManager.pickUps = 0;
+
     }
 
     public void QuitGame()

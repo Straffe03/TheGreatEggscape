@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Clau recollida! 🗝️");
         score += scorePerKey;
         keys++;
+        CheckVictory();
     }
     void Start()
     {
@@ -81,8 +82,6 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-
-        CheckVictory();
         if (keytxt != null)
         {
             keytxt.text = keys.ToString() + "/" + maxKeyText;
@@ -95,14 +94,23 @@ public class GameManager : MonoBehaviour
     {
         if (difficulty != "Endless" && maxKeys == keys)
         {
+            Debug.Log("Ganar: iniciando escena final...");
             victory = true;
+            Time.timeScale = 1f;
             SceneManager.LoadScene("MenuFinal");
         }
     }
     public void PlayerLoss()
     {
         victory = false;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MenuFinal");
+    }
+
+
+    public void ResetGameManager()
+        {
+        Destroy(gameObject);
     }
 
 }
