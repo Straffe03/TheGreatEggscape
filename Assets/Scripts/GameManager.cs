@@ -24,9 +24,20 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI keytxt;
     public TextMeshProUGUI scoretxt;
+    public TextMeshProUGUI powerupTimerText;
     public Slider healthSlider;
 
     string maxKeyText;
+
+    private float remainingTime = 0f;
+    private bool isActive = false;
+
+    public void ActivateTimer(float duration)
+    {
+        remainingTime = duration;
+        isActive = true;
+        UpdatePowerUpTimer();
+    }
 
 
 
@@ -90,6 +101,18 @@ public class GameManager : MonoBehaviour
             keytxt.text = keys.ToString() + "/" + maxKeyText;
             scoretxt.text = "Score: " + score.ToString();
         }
+        if (!isActive) return;
+
+        remainingTime -= Time.deltaTime;
+        if (remainingTime <= 0f)
+        {
+            isActive = false;
+            powerupTimerText.text = "Power-Up: --"; // o "Power-Up terminado"
+        }
+        else
+        {
+            UpdatePowerUpTimer();
+        }
 
     }
 
@@ -119,6 +142,11 @@ public class GameManager : MonoBehaviour
         victory = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MenuFinal");
+    }
+
+    void UpdatePowerUpTimer()
+    {
+        powerupTimerText.text = $"Power-Up: {remainingTime:F1}s";
     }
 
 

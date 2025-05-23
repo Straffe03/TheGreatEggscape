@@ -10,6 +10,7 @@ public class PowerUpSpeed : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.pickUps++;
+            GameManager.Instance.ActivateTimer(duration);
             Debug.Log("PowerUp Speed recollit!");
             GameManager.score += GameManager.Instance.scorePerPowerUpSpeed;
             PlayerController playerController = other.GetComponent<PlayerController>();
