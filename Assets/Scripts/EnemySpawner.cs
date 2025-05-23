@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
                     Vector3 potentialPosition = hit.point + Vector3.up * 0.5f;
 
                     // Zona d'exclusió al voltant del (0,0,0)
-                    if (Mathf.Abs(potentialPosition.x) < 10f && Mathf.Abs(potentialPosition.z) < 10f)
+                    if (Mathf.Abs(potentialPosition.x) < 15f && Mathf.Abs(potentialPosition.z) < 15f)
                     {
                         Debug.Log("Posició exclosa: " + potentialPosition);
                         continue; // Prova una altra posició

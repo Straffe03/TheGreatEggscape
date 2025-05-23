@@ -641,9 +641,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.46570516
-  m_Height: 1.6728382
+  m_Height: 1.21494
   m_Direction: 2
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: -7.1977323e-16, y: 0.40000004, z: 0.070059955}
 --- !u!114 &469321025747786605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d581f96ed2dcb94ab039424f3d51e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 20
+  visionRange: 15
   stopChasingDistance: 25
   patrolRadius: 100
   patrolWaitTime: 3
