@@ -9,11 +9,11 @@ public class GameManager : MonoBehaviour
 
     public static int keys = 0;
     public static int pickUps = 0;
-    public int scorePerPowerUpSpeed = 50;
     public int maxKeys;
     public int maxEnemies;
     public int maxPowerUps;
     public static int score = 0;
+    public int scorePerPowerUpSpeed = 50;
     public int scorePerKey = 100;
 
     public string difficulty;
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI keytxt;
     public TextMeshProUGUI scoretxt;
     string maxKeyText;
+
+
 
     void Awake()
     {
@@ -81,9 +83,11 @@ public class GameManager : MonoBehaviour
     {
 
         CheckVictory();
-        CheckLoss();
-        keytxt.text = keys.ToString() + "/" + maxKeyText;
-        scoretxt.text = "Score: " + score.ToString();
+        if (keytxt != null)
+        {
+            keytxt.text = keys.ToString() + "/" + maxKeyText;
+            scoretxt.text = "Score: " + score.ToString();
+        }
 
     }
 
@@ -95,10 +99,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("MenuFinal");
         }
     }
-
-    void CheckLoss()
+    public void PlayerLoss()
     {
-        //TODO check si hp <= 0 if true victory ffalse y acabar
+        victory = false;
+        SceneManager.LoadScene("MenuFinal");
     }
 
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - NPC
+  - Ground
   layers:
   - Default
   - TransparentFX

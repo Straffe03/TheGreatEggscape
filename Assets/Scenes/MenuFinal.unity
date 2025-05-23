@@ -255,10 +255,10 @@ RectTransform:
   - {fileID: 1080400859}
   - {fileID: 633203142}
   - {fileID: 21218911}
-  - {fileID: 379420579}
-  - {fileID: 1445760026}
   - {fileID: 952909425}
   - {fileID: 518849065}
+  - {fileID: 379420579}
+  - {fileID: 1445760026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 185.86702, y: 0, z: 187.50963, w: 14.934837}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 237.04854, y: 0, z: 243.97115, w: 13.802414}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
