@@ -2,6 +2,7 @@ using Controller;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PauseManager : MonoBehaviour
     public Slider volumeSlider;
 
     private bool isPaused = false;
+
+    public AudioMixerGroup musicGroup;
 
     public GameObject playerController; // Assigna el script de moviment
     public GameObject playerCamera;     // Assigna el script de càmera
@@ -44,6 +47,15 @@ public class PauseManager : MonoBehaviour
         // Activa components
         playerController.GetComponent<PlayerController>().enabled = true;
         cameraControlScript.enabled = true;
+        
+        AudioSource[] allSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource source in allSources)
+        {
+            if (source.outputAudioMixerGroup != musicGroup)
+            {
+                source.UnPause();
+            }
+        }
     }
 
     public void Pause()
@@ -58,6 +70,15 @@ public class PauseManager : MonoBehaviour
         playerController.GetComponent<PlayerController>().enabled = false;
         cameraControlScript.enabled = false;
         Time.timeScale = 0f;
+
+        AudioSource[] allSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource source in allSources)
+        {
+            if (source.outputAudioMixerGroup != musicGroup && source.isPlaying)
+            {
+                source.Pause();
+            }
+        }
 
     }
 

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Classe encarregada de generar i controlar els power-ups en funció del mode de joc.
- * En modes Normal i Difícil: només apareixen un nombre limitat de power-ups i no es regeneren.
- * En mode Endless: es manté un nombre màxim i es regeneren després de recollir-los amb un retard.
+ * Classe encarregada de generar i controlar els power-ups en funciï¿½ del mode de joc.
+ * En modes Normal i Difï¿½cil: nomï¿½s apareixen un nombre limitat de power-ups i no es regeneren.
+ * En mode Endless: es mantï¿½ un nombre mï¿½xim i es regeneren desprï¿½s de recollir-los amb un retard.
  * @author Straffe
  */
 public class PowerUpSpawner : MonoBehaviour
 {
-    [Header("Configuració general")]
+    [Header("Configuraciï¿½ general")]
     public GameObject powerUpPrefab;
     public GameManager gameManager;
     private string dificultat;
     private int maxPowerUps;
 
-    [Header("Àrea de generació")]
+    [Header("ï¿½rea de generaciï¿½")]
     public Vector3 spawnAreaMin;
     public Vector3 spawnAreaMax;
 
-    [Header("Configuració Endless")]
+    [Header("Configuraciï¿½ Endless")]
     public float respawnDelay = 5f; // Temps de retard abans de reapareixer un power-up
 
     private int totalGenerated = 0;
@@ -71,7 +71,17 @@ public class PowerUpSpawner : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Ground"))
                 {
-                    spawnPosition = hit.point + Vector3.up * 0.5f;
+                    Vector3 potentialPosition = hit.point + Vector3.up * 0.5f;
+
+                    // Zona d'exclusiÃ³ al voltant del (0,0,0)
+                    if (Mathf.Abs(potentialPosition.x) < 2.5f && Mathf.Abs(potentialPosition.z) < 2.5f)
+                    {
+                        // EstÃ  dins la zona prohibida, tornem a intentar
+                        Debug.Log("PosiciÃ³ dins la zona prohibida, tornant a intentar...");
+                        continue;
+                    }
+
+                    spawnPosition = potentialPosition;
                     positionValid = true;
                     break;
                 }
@@ -80,7 +90,7 @@ public class PowerUpSpawner : MonoBehaviour
 
         if (!positionValid)
         {
-            Debug.LogWarning("No s'ha trobat una posició vàlida per al power-up.");
+            Debug.LogWarning("No s'ha trobat una posiciï¿½ vï¿½lida per al power-up.");
             return;
         }
 

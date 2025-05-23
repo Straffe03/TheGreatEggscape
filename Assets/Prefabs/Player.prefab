@@ -473,6 +473,7 @@ MonoBehaviour:
   currentHealth: 0
   hurtSound: {fileID: 8300000, guid: e8dde7b15d0ab9a489c427019e90bb7d, type: 3}
   deathSound: {fileID: 8300000, guid: ba7a5edaed4d75b42b9edec6a4b2c978, type: 3}
+  bloodEffectPrefab: {fileID: 0}
 --- !u!82 &920412217855763326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -482,7 +483,7 @@ AudioSource:
   m_GameObject: {fileID: 3628063687709480852}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3397468972377920423, guid: 576cdb36a3ff17a4b9cabefa219eab74, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

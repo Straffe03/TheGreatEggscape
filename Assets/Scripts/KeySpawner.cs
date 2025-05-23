@@ -77,7 +77,17 @@ public class KeySpawner : MonoBehaviour
                 // Comprovem que l'etiqueta del terra sigui "Ground" (o el que tu vulguis)
                 if (hit.collider.CompareTag("Ground"))
                 {
-                    spawnPosition = hit.point + Vector3.up * 0.5f; // Apareix just sobre el terra
+                    Vector3 potentialPosition = hit.point + Vector3.up * 0.5f;
+
+                    // Zona d'exclusió al voltant del (0,0,0)
+                    if (Mathf.Abs(potentialPosition.x) < 2.5f && Mathf.Abs(potentialPosition.z) < 2.5f)
+                    {
+                        // Està dins la zona prohibida, tornem a intentar
+                        Debug.Log("Posició dins la zona prohibida, tornant a intentar...");
+                        continue;
+                    }
+
+                    spawnPosition = potentialPosition;
                     positionValid = true;
                     break;
                 }

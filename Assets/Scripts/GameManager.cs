@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour
 
     void UpdatePowerUpTimer()
     {
+        if (powerupTimerText == null)
+        {
+            Debug.LogWarning("PowerUpTimerText no asignado en el GameManager.");
+            return;
+        }
         powerupTimerText.text = $"Power-Up: {remainingTime:F1}s";
     }
 

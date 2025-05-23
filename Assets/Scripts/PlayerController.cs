@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /**
@@ -8,6 +9,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+    private Coroutine speedBoostCoroutine = null;
+    private float originalWalkSpeed;
+    private float originalSprintSpeed;
     public float walkSpeed = 3f;
     public float sprintSpeed = 6f;
     public float rotationSpeed = 720f;
@@ -24,6 +28,11 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+        originalWalkSpeed = walkSpeed;
+        originalSprintSpeed = sprintSpeed;
     }
 
     private void Update()
@@ -76,21 +85,33 @@ public class PlayerController : MonoBehaviour
         // Moviment aplicat
         controller.Move(totalMove * Time.deltaTime);
     }
+
     public void IncreaseSpeed(float speedBoost, float duration)
     {
-        StartCoroutine(SpeedBoostCoroutine(speedBoost, duration));
+        if (speedBoostCoroutine != null)
+        {
+            StopCoroutine(speedBoostCoroutine);
+            ResetSpeed();
+        }
+
+        speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine(speedBoost, duration));
     }
 
-    private System.Collections.IEnumerator SpeedBoostCoroutine(float speedBoost, float duration)
+    private IEnumerator SpeedBoostCoroutine(float speedBoost, float duration)
     {
-        float originalWalkSpeed = walkSpeed;
-        float originalSprintSpeed = sprintSpeed;
-
         walkSpeed += speedBoost;
         sprintSpeed += speedBoost;
+        Debug.Log($"Velocitat augmentada: walk={walkSpeed}, sprint={sprintSpeed}");
 
         yield return new WaitForSeconds(duration);
 
+        ResetSpeed();
+        speedBoostCoroutine = null;
+    }
+
+    public void ResetSpeed()
+    {
+        Debug.Log("Speed reset to original values.");
         walkSpeed = originalWalkSpeed;
         sprintSpeed = originalSprintSpeed;
     }

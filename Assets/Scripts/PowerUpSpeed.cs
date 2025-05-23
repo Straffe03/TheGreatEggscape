@@ -1,11 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PowerUpSpeed : MonoBehaviour
 {
     public float speedBoost = 2f; // Factor de multiplicació de la velocitat
     public float duration = 5f; // Durada de l'augment de velocitat
-
     public event Action onCollected;
 
     void OnTriggerEnter(Collider other)

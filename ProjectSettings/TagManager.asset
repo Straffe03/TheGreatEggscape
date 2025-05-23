@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - Ground
   - PowerUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
