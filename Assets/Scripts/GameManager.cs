@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
         if (remainingTime <= 0f)
         {
             isActive = false;
-            powerupTimerText.text = "Power-Up: --"; // o "Power-Up terminado"
+            if (powerupTimerText != null)
+            {
+                powerupTimerText.text = "Power-Up: --"; 
+            }
         }
         else
         {
@@ -156,7 +159,7 @@ public class GameManager : MonoBehaviour
 
 
     public void ResetGameManager()
-        {
+    {
         Destroy(gameObject);
     }
 

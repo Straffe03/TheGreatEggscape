@@ -470,7 +470,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.10402, y: 0.09458, z: 29.30301}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.3810022, y: 2.3810022, z: 2.3810022}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 859740880319479859}
@@ -656,8 +656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d581f96ed2dcb94ab039424f3d51e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 10
-  stopChasingDistance: 20
+  visionRange: 20
+  stopChasingDistance: 25
   patrolRadius: 100
   patrolWaitTime: 3
   barkSound: {fileID: 8300000, guid: 2f30283212330d44db6638d4950554c8, type: 3}
