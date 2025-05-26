@@ -24711,7 +24711,7 @@ MonoBehaviour:
   gameManager: {fileID: 758257881}
   spawnAreaMin: {x: -33, y: 0.716, z: -31}
   spawnAreaMax: {x: 31, y: 0.716, z: 37}
-  extraSpawnInterval: 40
+  extraSpawnInterval: 35
 --- !u!4 &928279585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1669781109300623314, guid: e41f2185f1c11a8409ff3cd219f789a1, type: 3}
@@ -54752,6 +54752,22 @@ PrefabInstance:
     - target: {fileID: 3628063687709480852, guid: b7be861057ed7494193c6ba11119332f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550200146557734090, guid: b7be861057ed7494193c6ba11119332f, type: 3}
+      propertyPath: distance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550200146557734090, guid: b7be861057ed7494193c6ba11119332f, type: 3}
+      propertyPath: offset.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550200146557734090, guid: b7be861057ed7494193c6ba11119332f, type: 3}
+      propertyPath: offset.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550200146557734090, guid: b7be861057ed7494193c6ba11119332f, type: 3}
+      propertyPath: minVerticalAngle
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 8020557616364881684, guid: b7be861057ed7494193c6ba11119332f, type: 3}
       propertyPath: m_LocalPosition.x

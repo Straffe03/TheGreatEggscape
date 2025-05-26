@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        score = 0;
+        keys = 0;
+        pickUps = 0;
         Debug.Log("Pasa por el start");
         difficulty = PlayerPrefs.GetString("Difficulty");
         Debug.Log(difficulty);
